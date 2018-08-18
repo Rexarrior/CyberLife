@@ -1,0 +1,22 @@
+syntax="proto3";
+package CyberLife.Protobuff;
+
+
+message Point
+{
+    int32 x = 1;
+    int32 y = 2; 
+    
+}
+
+
+
+message Place
+{
+    
+    repeated Point points =1;
+
+    int32 placeType = 2;
+}
+
+
