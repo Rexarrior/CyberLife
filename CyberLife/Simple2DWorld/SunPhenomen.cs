@@ -6,9 +6,21 @@ using System.Threading.Tasks;
 
 namespace CyberLife.Simple2DWorld
 {
+    /// <summary>
+    /// Природное явление "солнце". Не реализовано.
+    /// </summary>
     class SunPhenomen: IPhenomen
     {
+        #region fields
+        #endregion
 
+        #region  properties
+
+
+
+        #endregion
+
+        #region Methods
 
 
         public void Update(EnvironmentMetadata environmentMetadata)
@@ -35,5 +47,15 @@ namespace CyberLife.Simple2DWorld
         {
             throw new NotImplementedException();
         }
+
+
+        #endregion
+
+
+        #region  constructors
+
+        
+
+        #endregion
     }
 }

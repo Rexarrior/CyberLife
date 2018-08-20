@@ -10,7 +10,10 @@ namespace CyberLife
         public double Value { get; set; }
 
 
-
+        /// <summary>
+        /// Получает прототип этих метаданных
+        /// </summary>
+        /// <returns>прототип googleProtobuff</returns>
         public Protobuff.Metadata.StateMetadata GetProtoMetadata()
         {
 
@@ -27,7 +30,13 @@ namespace CyberLife
 
 
 
-
+        /// <summary>
+        /// Инициализирует класс метаданные состояния из 
+        /// имени состояния и его значения
+        ///  
+        /// </summary>
+        /// <param name="stateName">Имя состояния</param>
+        /// <param name="value">Значение состояния</param>
         public StateMetadata(string stateName, double value)
         {
             if (stateName == "")
@@ -43,6 +52,10 @@ namespace CyberLife
 
         
 
+        /// <summary>
+        /// Инициализирует метаданные состояния из их прототипа.
+        /// </summary>
+        /// <param name="protoMetadata">Прототип GoogleProtobuff</param>
         public StateMetadata(Protobuff.Metadata.StateMetadata protoMetadata)
         {
             if (protoMetadata == null)

@@ -10,6 +10,7 @@ namespace CyberLife
     {
         static void Main(string[] args)
         {
+            //there is nothing.
         }
     }
 }

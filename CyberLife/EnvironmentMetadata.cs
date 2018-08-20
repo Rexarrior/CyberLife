@@ -4,10 +4,17 @@ namespace CyberLife
 {
     public class EnvironmentMetadata: Dictionary<string, PhenomenMetadata>
     {
+        /// <summary>
+        /// Размер поля окружающей среды
+        /// </summary>
         public MapSize Size;
 
 
 
+        /// <summary>
+        /// Получает прототип метаданных этой окружающей среды
+        /// </summary>
+        /// <returns></returns>
         public Protobuff.Metadata.EnvironmentMetadata GetProtoMetadata()
         {
             Protobuff.Metadata.EnvironmentMetadata ret = new Protobuff.Metadata.EnvironmentMetadata();
@@ -21,6 +28,13 @@ namespace CyberLife
         }
 
 
+
+        /// <summary>
+        /// Инициализирует метаданные окружающей среды из размера поля и 
+        /// метаданных природных явлений, действующих в окружающей среде
+        /// </summary>
+        /// <param name="size">Размер поля</param>
+        /// <param name="phenomenaMetadata">Метаданные природных явлений</param>
         public EnvironmentMetadata(MapSize size, List<PhenomenMetadata> phenomenaMetadata)
         {
             Size = size ?? throw new ArgumentNullException(nameof(size));
@@ -32,6 +46,10 @@ namespace CyberLife
 
 
 
+        /// <summary>
+        /// Инициализирует метаданные окружающей среды из их прототипа
+        /// </summary>
+        /// <param name="protoMetadata"></param>
         public EnvironmentMetadata(Protobuff.Metadata.EnvironmentMetadata protoMetadata)
         {
             Size = new MapSize(protoMetadata.MapSize);

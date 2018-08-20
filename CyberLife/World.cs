@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using  System.IO;
@@ -6,6 +6,9 @@ using Google.Protobuf;
 
 namespace CyberLife
 {
+    /// <summary>
+    /// Реаилзует цельный мир.
+    /// </summary>
     public class World
     {
         #region fields
@@ -35,16 +38,21 @@ namespace CyberLife
 
 
         #region methods
-
+        /// <summary>
+        /// Вызывает обновление всех компонентов мира. 
+        /// </summary>
         public void Update()
         {
             _environment.Update();
-            
+          //Todo life forms update??  
         }
 
 
 
-
+        /// <summary>
+        /// Получает метадату этого мира.
+        /// </summary>
+        /// <returns></returns>
         public WorldMetadata GetMetadata()
         {
             Dictionary<long, LifeFormMetadata> lifeFormsMetadata = new Dictionary<long, LifeFormMetadata>();
@@ -54,9 +62,12 @@ namespace CyberLife
             }
             return new WorldMetadata(_environment.GetMetadata(), lifeFormsMetadata, _name, _age); 
         }
+        
 
-
-
+        /// <summary>
+        /// Cохраняет этот мир в бинарном формате по протоколу googleProtobuff
+        /// </summary>
+        /// <param name="fileName">Имя файла для сохранения</param>
         public void SaveToFile(string fileName)
         {
             Protobuff.Metadata.WorldMetadata metadata = this.GetMetadata().GetProtoMetadata();
@@ -65,7 +76,7 @@ namespace CyberLife
             {
 
                 FileStream fs = new FileStream(fileName, FileMode.CreateNew, FileAccess.Write);
-                metadata.WriteTo(new CodedOutputStream(fs));
+                metadata.WriteTo(fs);
                 fs.Close();
             }
             catch (Exception e)
@@ -77,6 +88,12 @@ namespace CyberLife
         }
 
 
+        /// <summary>
+        /// Загружает мир из бинарного файла в формате googleProtobuff. 
+        /// </summary>
+        /// <param name="fileName">Имя файла для загрузки</param>
+        /// <param name="fabrica">Фабрика природных явлений</param>
+        /// <returns>Загруженный мир</returns>
         public static World LoadFromFile(string fileName, PhenomenaFabrica fabrica)
         {
             return new World(new WorldMetadata(
@@ -93,6 +110,13 @@ namespace CyberLife
 
 
         #region constructors
+        /// <summary>
+        /// Инициализирует мир на основе его компонентов
+        /// </summary>
+        /// <param name="name">Название мира</param>
+        /// <param name="environment">Окружающая среда для этого мира</param>
+        /// <param name="visualizer">Визуализатор, предназначенный для отрисовки компонентов мира</param>
+        /// <param name="lifeForms">Формы жизни</param>
         public World(string name, Environment environment, IVisualizer visualizer, List<LifeForm> lifeForms)
         {
             if (lifeForms == null)
@@ -116,7 +140,12 @@ namespace CyberLife
 
 
         
-
+        /// <summary>
+        /// Инициализирует экземпляр мира из его метадаты 
+        /// и фабрики природных явлений
+        /// </summary>
+        /// <param name="metadata">метаданные мира</param>
+        /// <param name="phenomenaFabrica">Фабрика для разбора прородных явлений, содержащихся в метаданных</param>
         public World(WorldMetadata metadata, PhenomenaFabrica phenomenaFabrica)
         {
             _environment = new Environment(metadata.EnvironmentMetadata, phenomenaFabrica);

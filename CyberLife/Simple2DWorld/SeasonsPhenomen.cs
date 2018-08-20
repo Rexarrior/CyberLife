@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CyberLife
 {
+    /// <summary>
+    /// Природное явление смены времен года. Не реализовано
+    /// </summary>
     class SeasonsPhenomen:IPhenomen
     {
         #region fields

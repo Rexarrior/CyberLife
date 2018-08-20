@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace CyberLife
 {
+    /// <summary>
+    /// Класс для контроля за группой миров.
+    /// Предполагается, что этот класс будет предоставлять основные функции
+    /// по созданию, упавлению и прочим манипуляциям с мирами и их содержимым. 
+    /// На данный момент никак не реализован. 
+    /// </summary>
     class Demiurg
     {
         #region fields
@@ -17,6 +23,9 @@ namespace CyberLife
 
 
         #region properties
+        /// <summary>
+        /// Подконтрольные миры
+        /// </summary>
         public List<World> Worlds { get => _worlds;  }
         #endregion
 

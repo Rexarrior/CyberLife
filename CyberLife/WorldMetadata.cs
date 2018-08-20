@@ -5,16 +5,34 @@ namespace CyberLife
 {
     public class WorldMetadata
     {
+        /// <summary>
+        /// Метаданные окружающей среды этого мира
+        /// </summary>
         public EnvironmentMetadata EnvironmentMetadata;
 
+
+        /// <summary>
+        /// Метаданные форм жизни, населяющих этот мир. 
+        /// </summary>
         public Dictionary<Int64, LifeFormMetadata> LifeFormsMetadata;
 
+
+        /// <summary>
+        /// Название мира
+        /// </summary>
         public string Name;
 
+        /// <summary>
+        /// Возраст мира. В ходах. 
+        /// </summary>
         public int Age;
 
 
 
+        /// <summary>
+        /// Получает прототип метаданных мира. 
+        /// </summary>
+        /// <returns>Прототип googleProtobuf</returns>
         public Protobuff.Metadata.WorldMetadata GetProtoMetadata()
         {
             Protobuff.Metadata.WorldMetadata ret = new Protobuff.Metadata.WorldMetadata();
@@ -37,7 +55,13 @@ namespace CyberLife
 
 
 
-
+        /// <summary>
+        /// Инициализирует метаданные мира из метаданных его компонент. 
+        /// </summary>
+        /// <param name="environmentMetadata">Метаданные окружающей среды</param>
+        /// <param name="lifeFormsMetadata">Метаданные форм жизни</param>
+        /// <param name="name">Название мира</param>
+        /// <param name="age">Возраст мира в ходах</param>
         public WorldMetadata(EnvironmentMetadata environmentMetadata, Dictionary<long, LifeFormMetadata> lifeFormsMetadata, string name, int age)
         {
             if (name == "")
@@ -57,7 +81,10 @@ namespace CyberLife
 
 
 
-
+        /// <summary>
+        /// Инициализирует метаданные мира из их прототипа
+        /// </summary>
+        /// <param name="protoMetadata">прототип googleProtobuff</param>
         public WorldMetadata(Protobuff.Metadata.WorldMetadata protoMetadata)
         {
             if (protoMetadata == null) 

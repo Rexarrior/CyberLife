@@ -6,10 +6,20 @@ namespace CyberLife
         private string _name;
         private double _value;
         
-
+        /// <summary>
+        /// Название состояния формы жизни
+        /// </summary>
         public string Name { get => _name; }
+        
+        /// <summary>
+        /// Числовое значение состояния формы жизни. 
+        /// </summary>
         public double Value { get => _value; set => _value = value; }
 
+        /// <summary>
+        /// Формирует метаданные этого состояния формы жизни
+        /// </summary>
+        /// <returns>Метаданные состояния</returns>
         public virtual StateMetadata GetMetadata()
         {
             return new StateMetadata(_name, _value);
@@ -17,6 +27,12 @@ namespace CyberLife
 
 
 
+        /// <summary>
+        /// Инициализирует состояние формы жизни
+        /// по его названию и значению
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public LifeFormState(string name, double value)
         {
             if (name == "")
@@ -31,7 +47,11 @@ namespace CyberLife
 
 
 
-
+        /// <summary>
+        /// Инициализирует состояние формы жизни по
+        /// его метаданным
+        /// </summary>
+        /// <param name="metadata"></param>
         public LifeFormState(StateMetadata metadata)
         {
             if (metadata == null)
